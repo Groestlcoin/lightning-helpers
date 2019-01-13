@@ -1,25 +1,25 @@
 #!/bin/bash
 
-if [[ $1 == B ]]; then
-    #echo "Used unit is  BTC"
+if [[ $1 == G ]]; then
+    #echo "Used unit is GRS"
     DIV=100000000
-    UNIT=BTC
+    UNIT=GRS
 elif  [[ $1 == m ]]; then
-    #echo "Used unit is mBTC"
+    #echo "Used unit is mGRS"
     DIV=100000
-    UNIT=mBTC
+    UNIT=mGRS
 elif [[ $1 == y ]]; then
-    #echo "Used unit is microBTC"
+    #echo "Used unit is microGRS"
     DIV=100
-    UNIT=yBTC
-elif [[ $1 == b ]]; then
-    #echo "Used unit is bits"
+    UNIT=yGRS
+elif [[ $1 == g ]]; then
+    #echo "Used unit is groestls"
     DIV=100
-    UNIT=bis
+    UNIT=groestls
 else
-    #echo "Used unit is satoshi"
+    #echo "Used unit is gro"
     DIV=1
-    UNIT=satoshi
+    UNIT=gro
 fi
 
 lightning-cli listfunds | grep "value" | sed 's/      "value": //g' | sed 's/,//g' | awk -v div="$DIV" -v u="$UNIT" '{s+=$1} END {print  s/div " " u " available to fund channels"}'
@@ -40,6 +40,4 @@ if [[ $CAP -gt 0 ]]; then
 	echo "Percentage of total channel capacity owned: $PER"
 fi
 echo "---------------"
-echo "Add command line parameter [B] for BTC, [m] for mBTC, [y] for microBTC, [b] for bits and nothting or anything else for satoshi"
-echo "by Rene Pickhardt."
-echo "Consider a tip: via curl -i -H \"Accept: application/json\" -d '{\"amount\":ENTER_AN_INTEGER_AMOUNT_OF_SATOSHIS_INSTEAD_OF_THIS}' http://ln.rene-pickhardt.de/invoice"
+echo "Add command line parameter [G] for GRS, [m] for mGRS, [y] for microGRS, [b] for groestls and nothting or anything else for gro"
